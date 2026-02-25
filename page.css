@@ -1,0 +1,81 @@
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f8f9fa; padding-bottom:60px;}
+h2 { text-align: center; color: #333; margin-bottom: 20px; }
+    
+.product-card {
+    background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 20px; padding: 15px; overflow: hidden;
+    display: flex;           /* ← 改為 flex */
+    align-items: center;     /* ← 垂直置中 */
+    gap: 15px;               /* ← 間距 */
+}
+
+.product-header { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 0;        /* ← 移除下方間距 */
+    flex-shrink: 0;          /* ← 防止被壓縮 */
+}
+.product-img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; margin-right: 15px; background: #eee; }
+.product-info b { font-size: 1.1rem; color: #222; }
+.product-info span { font-size: 0.85rem; color: #888; }
+
+.unit-container {
+    background: #f1f3f5;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex: 1;                 /* ← 佔滿剩餘空間 */
+}
+
+/* 修改後的單位列 */
+.unit-row { 
+    display: flex; 
+    flex-direction: column; 
+    background: white; 
+    padding: 8px; 
+    border-radius: 6px; 
+    border: 1px solid #dee2e6;
+    
+    /* 核心修改：自動調整寬度 */
+    flex: 1;             /* 讓寬度平分剩餘空間 */
+    min-width: 80px;     /* 設定最小寬度，防止太擠 */
+    max-width: 100%;     /* 最大不超過一行 */
+}
+.unit-label { font-size: 0.8rem; color: #666; margin-bottom: 4px; font-weight: bold; }
+
+.qty-input { 
+    border: 1px solid #ced4da; border-radius: 4px; padding: 6px; 
+    font-size: 1rem; width: 100%; box-sizing: border-box; text-align: center;
+}
+.qty-input:focus { border-color: #00b900; outline: none; box-shadow: 0 0 0 2px rgba(0,185,0,0.1); }
+
+.footer { position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 15px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
+.submit-btn { 
+    background: #00b900; color: white; border: none; width: 100%; 
+    padding: 12px; border-radius: 25px; font-size: 1rem; font-weight: bold; cursor: pointer;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#searchText {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 15px;
+    outline: none;
+}
+
+.search-container img {
+    width: 25px;
+    margin-left: 20px;
+    cursor: pointer;
+}
