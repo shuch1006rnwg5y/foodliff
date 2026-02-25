@@ -137,7 +137,7 @@ function search() {
 
 async function init() {
     await liff.init({ liffId: "2009214081-QU27RD0h" });
-    if (!liff.isLoggedIn()) { liff.login(); }
+    // if (!liff.isLoggedIn()) { liff.login(); }
     fetchProducts();
 }
 init();
