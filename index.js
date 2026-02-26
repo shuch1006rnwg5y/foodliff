@@ -80,7 +80,7 @@ async function fetchProducts() {
 async function submitOrder() {
     const inputs = document.querySelectorAll('.qty-input');
     let orderDetails = [];
-    let showMessage=[];
+    // let showMessage=[];
     
     inputs.forEach(input => {
         const qty = parseInt(input.value);
@@ -91,7 +91,7 @@ async function submitOrder() {
             const itemId=input.getAttribute('data-itemId');//商品編號
             // 這裡可以同時紀錄 ID，方便 Python 處理
             orderDetails.push({itemId:itemId, UnitId:UnitId,qty:qty});
-            showMessage.push(`${name} (${qty}${unit})`)
+            // showMessage.push(`${name} (${qty}${unit})`)
         }
     });
 
@@ -100,11 +100,36 @@ async function submitOrder() {
         return;
     }
 
-    const messageText = "📋 訂購明細：\n" + showMessage.join("\n");
-    console.log(messageText);
+    // 取得使用者資料 (需要 userId 才知道是誰下單)
+    const profile = await liff.getProfile();
+    const userId = profile.userId;
+    const data = {
+        userId: userId,
+        items: orderDetails
+    };
+    try {
+        const response = await fetch('https://nonintoxicative-collin-nematic.ngrok-free.dev/order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if(response.data.status=='success'){
+            alert("訂單已成功送出！");
+            liff.closeWindow(); // 成功後關閉視窗
+        }else{
+            alert("訂單送出失敗");
+        }
 
-    await liff.sendMessages([{ type: 'text', text: messageText },{ type: 'text', text: JSON.stringify(orderDetails) }]);
-    liff.closeWindow();
+    } catch (error) {
+        console.error("Error:", error);
+        alert("連線發生錯誤");
+    }
+
+    // const messageText = "📋 訂購明細：\n" + showMessage.join("\n");
+    // console.log(messageText);
+
+    // await liff.sendMessages([{ type: 'text', text: messageText }]);
+    // liff.closeWindow();
 }
 
 function saveCurrentQtys() {
