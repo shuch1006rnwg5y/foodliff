@@ -113,16 +113,20 @@ async function submitOrder() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
-        if(response.data.status=='success'){
-            alert("訂單已成功送出！");
-            liff.closeWindow(); // 成功後關閉視窗
+       
+        // 解析後端傳回的 JSON
+        const result = await response.json();
+        //  console.log(result)
+        if (result.code === 200 && result.status === "success") {
+            alert(result.message); 
+            liff.closeWindow();
         }else{
             alert("訂單送出失敗");
         }
 
     } catch (error) {
         console.error("Error:", error);
-        alert("連線發生錯誤");
+        alert("連線發生錯誤"+ error);
     }
 
     // const messageText = "📋 訂購明細：\n" + showMessage.join("\n");
