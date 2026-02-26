@@ -47,6 +47,7 @@ function renderProducts(dataList) {
 }
 async function fetchProducts() {
     try {
+        //需更換
         const res = await fetch('https://nonintoxicative-collin-nematic.ngrok-free.dev/searchProduct', {
             method: 'GET',
             headers: {
