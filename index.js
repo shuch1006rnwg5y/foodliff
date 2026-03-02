@@ -48,7 +48,7 @@ function renderProducts(dataList) {
 async function fetchProducts() {
     try {
         //需更換
-        const res = await fetch('https://nonintoxicative-collin-nematic.ngrok-free.dev/searchProduct', {
+        const res = await fetch('https://nonintoxicative-collin-nematic.ngrok-free.devsearchProduct', {
             method: 'GET',
             headers: {
                 // 這行最重要：告訴 ngrok 不要顯示警告頁面
@@ -121,7 +121,7 @@ async function submitOrder() {
             alert(result.message); 
             liff.closeWindow();
         }else{
-            alert("訂單送出失敗");
+            alert("訂單送出失敗"+result.message);
         }
 
     } catch (error) {
