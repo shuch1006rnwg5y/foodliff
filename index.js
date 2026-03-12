@@ -103,8 +103,10 @@ async function submitOrder() {
     // 取得使用者資料 (需要 userId 才知道是誰下單)
     const profile = await liff.getProfile();
     const userId = profile.userId;
+    const userName = profile.displayName; // 這裡就是 LINE 顯示名稱
     const data = {
         userId: userId,
+        userName: userName,
         items: orderDetails
     };
     try {
